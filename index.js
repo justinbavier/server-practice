@@ -11,15 +11,15 @@ if (!databaseUri) {
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var api = new ParseServer({
-  databaseURI: databaseURI || 'mongodb://localhost:27017/dev',
+  databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID,
-  masterKey: process.env.MASTER_KEY,
+  appId: process.env.APP_ID || '130228',
+  masterKey: process.env.MASTER_KEY || '',
   serverURL: process.env.SERVER_URL || 'http://localhost:3000/parse',
   liveQuery: {
     classNames: ["Posts", "Comments"]
   },
-  publicServerURL: ""
+  publicServerURL: "https://young-thicket-57548.herokuapp.com/parse"
 });
 
 var app = express();
@@ -38,7 +38,9 @@ app.get('/test', function(req, res) {
 });
 
 var port = process.env.PORT || 3000;
-var htppServer = require('http').createServer(app);
-httpServer.list(port, function() {
-  console.log('Running on port ' + port '.');
+var httpServer = require('http').createServer(app);
+httpServer.listen(port, function() {
+  console.log('Running on port ' + port + '.');
 });
+
+ParseServer.createLiveQueryServer(httpServer);
