@@ -1,0 +1,22 @@
+{
+  "name": "server-practice",
+  "version": "1.0.0",
+  "description": "Just a testing app to mess around with Parse API server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Justin Bavier",
+  "license": "MIT",
+  "dependencies": {
+    "es6-promise": "^4.0.5",
+    "express": "~4.11.x",
+    "isomorphic-fetch": "^2.1.1",
+    "kerberos": "~0.0.x",
+    "parse": "~1.8.0",
+    "parse-server": "*"
+  },
+  "engines": {
+    "node": ">=4.3"
+  }
+}
